@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create your Google Account</title>
+    <link rel="stylesheet" href="login-style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-header">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google Logo" class="google-logo">
+                <h1>Create Account</h1>
+                <p>Join the Pro Docs community</p>
+            </div>
+
+            <form id="signupForm">
+                <div class="input-group">
+                    <input type="text" id="signup-username" required>
+                    <label for="signup-username">Choose a username</label>
+                </div>
+                <div class="input-group">
+                    <input type="email" id="signup-email" required>
+                    <label for="signup-email">Email address</label>
+                </div>
+                <div class="input-group">
+                    <input type="password" id="signup-password" required>
+                    <label for="signup-password">Password</label>
+                    <i class="fa-regular fa-eye toggle-password" onclick="togglePassword('signup-password')"></i>
+                </div>
+                <div class="input-group">
+                    <input type="password" id="confirm-password" required>
+                    <label for="confirm-password">Confirm password</label>
+                    <i class="fa-regular fa-eye toggle-password" onclick="togglePassword('confirm-password')"></i>
+                </div>
+                <div id="signupErrorMessage" class="error-msg"></div>
+                <div class="auth-actions">
+                    <a href="login.html" class="link-text">Sign in instead</a>
+                    <button type="submit" id="signupBtn" class="btn-primary">
+                        <span class="btn-text">Create account</span>
+                        <div class="spinner" id="signupLoader"></div>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="auth.js"></script>
+</body>
+</html>

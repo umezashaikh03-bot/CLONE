@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign in - Google Accounts</title>
+    <link rel="stylesheet" href="login-style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-header">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google Logo" class="google-logo">
+                <h1>Sign in</h1>
+                <p>Use your account to continue</p>
+            </div>
+
+            <form id="loginForm">
+                <div class="input-group">
+                    <input type="text" id="username" required>
+                    <label for="username">Username or email</label>
+                </div>
+                
+                <div class="input-group">
+                    <input type="password" id="password" required>
+                    <label for="password">Enter your password</label>
+                    <i class="fa-regular fa-eye toggle-password" onclick="togglePassword('password')"></i>
+                </div>
+                
+                <div id="errorMessage" class="error-msg"></div>
+
+                <div class="auth-actions">
+                    <a href="#" class="link-text">Forgot password?</a>
+                    <button type="submit" id="loginBtn" class="btn-primary">
+                        <span class="btn-text">Next</span>
+                        <div class="spinner" id="loginLoader"></div>
+                    </button>
+                </div>
+
+                <div class="auth-footer">
+                    <div class="footer-links">
+                        <span>Don't have an account?</span>
+                        <a href="signup.html" class="link-text bold">Create account</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="auth.js"></script>
+</body>
+</html>

@@ -1,0 +1,177 @@
+:root {
+    --google-blue: #1a73e8;
+    --bg-gray: #f8f9fa;
+    --border-color: #dadce0;
+    --sidebar-width: 260px;
+    --header-height: 65px;
+    --text-main: #3c4043;
+    --header-bg: white;
+    --sidebar-bg: white;
+    --toolbar-bg: #edf2fa;
+    --page-bg: white;
+}
+
+/* DARK MODE VARIABLES */
+body.dark-theme {
+    --bg-gray: #121212;
+    --border-color: #333;
+    --text-main: #e8eaed;
+    --header-bg: #1f1f1f;
+    --sidebar-bg: #1f1f1f;
+    --toolbar-bg: #2d2d2d;
+    --page-bg: #2d2d2d;
+}
+
+* { box-sizing: border-box; }
+
+body { 
+    margin: 0; 
+    font-family: 'Roboto', sans-serif; 
+    background-color: var(--bg-gray); 
+    color: var(--text-main);
+    height: 100vh; 
+    display: flex; 
+    flex-direction: column; 
+    overflow: hidden;
+    transition: background 0.3s ease;
+}
+
+/* Header */
+.header { 
+    height: var(--header-height); 
+    background: var(--header-bg); 
+    border-bottom: 1px solid var(--border-color); 
+    display: flex; 
+    align-items: center; 
+    padding: 0 20px; 
+    z-index: 100;
+    transition: background 0.3s ease;
+}
+
+.header-left { display: flex; align-items: center; flex: 1; }
+.logo { width: 35px; margin-right: 15px; }
+
+.doc-details { display: flex; flex-direction: column; }
+#doc-title { 
+    font-size: 18px; 
+    border: 1px solid transparent; 
+    padding: 2px 8px; 
+    border-radius: 4px; 
+    width: fit-content; 
+    outline: none; 
+    font-weight: 500;
+    background: transparent;
+    color: var(--text-main);
+}
+#doc-title:hover { border-color: var(--border-color); }
+
+.menu-bar { display: flex; gap: 5px; margin-top: 4px; }
+.menu-item { 
+    position: relative; 
+    cursor: pointer; 
+    padding: 4px 12px; 
+    border-radius: 4px; 
+    font-size: 14px; 
+    color: #5f6368; 
+}
+.menu-item:hover { background: rgba(0,0,0,0.05); }
+
+.dropdown { 
+    display: none; 
+    position: absolute; 
+    top: 100%; 
+    left: 0; 
+    background: var(--header-bg); 
+    border: 1px solid var(--border-color); 
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1); 
+    z-index: 2000; 
+    min-width: 220px; 
+    padding: 8px 0; 
+    border-radius: 6px; 
+    color: var(--text-main);
+}
+.menu-item:hover .dropdown { display: block; }
+.dropdown div { padding: 8px 20px; display: flex; align-items: center; gap: 12px; font-size: 13px; cursor: pointer; }
+.dropdown div:hover { background: rgba(0,0,0,0.05); color: var(--google-blue); }
+.divider { height: 1px; background: var(--border-color); margin: 6px 0; }
+
+.header-right { display: flex; align-items: center; gap: 15px; }
+.theme-toggle { 
+    background: none; 
+    border: none; 
+    cursor: pointer; 
+    font-size: 20px; 
+    color: var(--text-main); 
+    padding: 8px;
+    border-radius: 50%;
+    transition: background 0.2s;
+}
+.theme-toggle:hover { background: rgba(0,0,0,0.1); }
+.share-btn { background: #c2e7ff; color: #001d35; border: none; padding: 8px 24px; border-radius: 24px; cursor: pointer; font-weight: 500; }
+
+/* Layout */
+.main-wrapper { display: flex; flex: 1; overflow: hidden; }
+.sidebar { width: var(--sidebar-width); background: var(--sidebar-bg); border-right: 1px solid var(--border-color); display: flex; flex-direction: column; padding: 20px 12px; transition: background 0.3s; }
+.sidebar-header h3 { font-size: 16px; color: var(--text-main); margin-bottom: 15px; }
+
+.tabs-bar { overflow-y: auto; }
+.tab { 
+    padding: 10px 12px; 
+    margin-bottom: 4px; 
+    border-radius: 0 20px 20px 0; 
+    cursor: pointer; 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    font-size: 13px; 
+    border-left: 4px solid transparent; 
+    color: var(--text-main);
+    transition: all 0.2s;
+}
+.tab.active { background: rgba(26, 115, 232, 0.1); color: var(--google-blue); border-left-color: var(--google-blue); font-weight: 500; }
+
+/* Editor Main */
+.editor-main { flex: 1; display: flex; flex-direction: column; background-color: var(--bg-gray); }
+.toolbar { background: var(--toolbar-bg); margin: 10px 20px; padding: 6px 15px; border-radius: 24px; display: flex; align-items: center; gap: 10px; width: fit-content; transition: background 0.3s; }
+.tool-group { display: flex; align-items: center; gap: 5px; border-right: 1px solid var(--border-color); padding-right: 10px; }
+.toolbar button { background: none; border: none; padding: 6px; cursor: pointer; border-radius: 4px; color: var(--text-main); }
+.toolbar button:hover { background: rgba(0,0,0,0.1); color: var(--google-blue); }
+
+.toolbar-select { 
+    background: transparent; 
+    border: none; 
+    color: var(--text-main); 
+    font-size: 13px; 
+    cursor: pointer; 
+    outline: none; 
+    padding: 4px;
+}
+
+/* A4 Page */
+.editor-container { flex: 1; overflow-y: auto; padding: 40px 0; display: flex; justify-content: center; }
+#editor { 
+    background: var(--page-bg); 
+    width: 816px; 
+    min-height: 1056px; 
+    padding: 96px; 
+    box-shadow: 0 0 10px rgba(0,0,0,0.1); 
+    border: 1px solid var(--border-color); 
+    outline: none; 
+    line-height: 1.6; 
+    color: var(--text-main);
+    transition: background 0.3s, color 0.3s;
+}
+
+.status-bar { padding: 8px 20px; background: var(--header-bg); border-top: 1px solid var(--border-color); display: flex; justify-content: space-between; font-size: 12px; color: #5f6368; transition: background 0.3s; }
+.status-left { display: flex; align-items: center; gap: 15px; }
+.save-status { font-style: italic; opacity: 0.7; transition: opacity 0.3s; }
+
+/* Modal (Simplified) */
+.modal { display: none; position: fixed; z-index: 3000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); align-items: center; justify-content: center; }
+.share-card { background: var(--header-bg); color: var(--text-main); width: 450px; border-radius: 12px; overflow: hidden; }
+.share-header { padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); }
+.share-body { padding: 20px; }
+.input-wrapper { display: flex; border: 1px solid var(--border-color); border-radius: 4px; padding: 4px; }
+.input-wrapper input { border: none; outline: none; padding: 8px; flex: 1; background: transparent; color: var(--text-main); }
+.share-send-btn { background: var(--google-blue); color: white; border: none; padding: 0 20px; border-radius: 4px; cursor: pointer; }
+.share-footer { padding: 16px 20px; background: var(--bg-gray); border-top: 1px solid var(--border-color); display: flex; justify-content: space-between; }
