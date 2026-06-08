@@ -67,12 +67,30 @@ app.post('/api/signup', async (req, res) => {
 app.post('/api/login', async (req, res) => {
     try {
         const { username, password } = req.body;
+        console.log(`Login attempt for user: ${username}`); // DEBUG 1
+
         const user = await User.findOne({ username });
-        if (user && await bcrypt.compare(password, user.password)) {
+        
+        if (!user) {
+            console.log("❌ User not found in database"); // DEBUG 2
+            return res.status(401).json({ success: false, message: "Invalid credentials" });
+        }
+
+        console.log("✅ User found. Comparing passwords..."); // DEBUG 3
+        const match = await bcrypt.compare(password, user.password);
+        
+        if (match) {
+            console.log("✅ Password matched!"); // DEBUG 4
             const token = jwt.sign({ username: user.username }, JWT_SECRET, { expiresIn: '24h' });
             res.json({ success: true, username: user.username, token });
-        } else { res.status(401).json({ success: false, message: "Invalid credentials" }); }
-    } catch (e) { res.status(500).json({ success: false, message: "Server error" }); }
+        } else {
+            console.log("❌ Password did NOT match"); // DEBUG 5
+            res.status(401).json({ success: false, message: "Invalid credentials" });
+        }
+    } catch (e) {
+        console.error("❌ Server error:", e);
+        res.status(500).json({ success: false, message: "Server error" });
+    }
 });
 
 app.post('/api/share', authenticate, async (req, res) => {
